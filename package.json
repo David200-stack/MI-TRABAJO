@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.0",
+    "react-router-dom": "^7.5.2"
+  }
+}

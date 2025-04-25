@@ -1,0 +1,20 @@
+/* src/styles/Navbar.css */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2563eb;
+    padding: 1rem 2rem;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    margin-right: 1rem;
+  }
+  
+  nav a:hover {
+    color: #ffcc00; /* Efecto de hover */
+  }

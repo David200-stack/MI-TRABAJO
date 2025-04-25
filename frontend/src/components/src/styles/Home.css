@@ -1,0 +1,38 @@
+/* src/styles/Home.css */
+.home-container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .banner {
+    background-color: #1e293b;
+    color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .catalog-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .featured-section {
+    margin-top: 2rem;
+  }
+  
+  .figures-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .figure-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
