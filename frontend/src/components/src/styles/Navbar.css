@@ -1,4 +1,4 @@
-/* src/styles/Navbar.css */
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -16,5 +16,5 @@ nav {
   }
   
   nav a:hover {
-    color: #ffcc00; /* Efecto de hover */
+    color: #ffcc00; 
   }

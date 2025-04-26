@@ -1,4 +1,4 @@
-/* src/styles/Buttons.css */
+
 button {
   background-color: #4caf50;
   color: white;
@@ -10,5 +10,5 @@ button {
 }
 
 button:hover {
-  background-color: #388e3c; /* Efecto de hover */
+  background-color: #388e3c; 
 }

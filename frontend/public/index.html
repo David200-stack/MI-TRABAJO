@@ -1,43 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Figuras 3D | Coleccionables Únicos</title>
+    <link rel="icon" href="favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Descubre la mejor tienda de figuras en 3D. Coleccionables de acción, fantasía y clásicos con acabados de alta calidad.">
+    
+    <style>
+        
+        @keyframes moveUpDown {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+        
+        body {
+            font-family: 'Kalam', cursive;
+            background-color: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+        
+        .hero-section {
+            background: linear-gradient(135deg, #4c00ff, #1a1a2e);
+            padding: 100px 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #87CEEB; 
+            animation: moveUpDown 3s infinite; 
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #87CEEB; 
+            color: #1a1a2e;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            animation: blink 2s infinite; 
+        }
+
+        
+        .categories {
+            padding: 60px 20px;
+            background-color: #18182b;
+        }
+
+        .category-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-card {
+            width: 250px;
+            padding: 15px;
+            background-color: #4c00ff;
+            border-radius: 10px;
+            animation: moveUpDown 4s infinite;
+        }
+
+        .category-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        
+        .catalog {
+            padding: 60px 20px;
+            background-color: #1a1a2e;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #18182b;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .buy-button {
+            background-color: #87CEEB; 
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: blink 1.5s infinite;
+        }
+
+        
+        .testimonials {
+            padding: 60px 20px;
+            background-color: #4c00ff;
+        }
+
+        .testimonial-card {
+            background-color: #18182b;
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        
+        .contact form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .contact input, .contact textarea {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .contact button {
+            background-color: #87CEEB; 
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: moveUpDown 3s infinite;
+        }
+
+        
+        .footer {
+            background-color: #18182b;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Bienvenido a la mejor tienda de figuras 3D</h1>
+            <p>Explora nuestra exclusiva colección de figuras de acción, fantasía y más.</p>
+            <a href="#catalogo" class="cta-button">Ver Catálogo</a>
+        </div>
+    </header>
+
+    
+    <section class="categories">
+        <h2>Categorías populares</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="images/action.jpg" alt="Figuras de Acción">
+                <h3>Don flamingo</h3>
+            </div>
+            <div class="category-card">
+                <img src="images/fantasy.jpg" alt="Figuras de Fantasía">
+                <h3>Kaido</h3>
+            </div>
+            <div class="category-card">
+                <img src="images/classic.jpg" alt="Figuras Clásicas">
+                <h3>Luffy</h3>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="catalogo" class="catalog">
+        <h2>Nuestro catálogo</h2>
+        <div class="catalog-grid">
+            <div class="product-card">
+                <img src="images/figura1.jpg" alt="Figura de Superhéroe">
+                <h3>Figura Luffy & Ace One Piece</h3>
+                <p>Alta calidad y detalles impresionantes.</p>
+                <span>$120.000</span>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <div class="product-card">
+                <img src="images/figura2.jpg" alt="Figura de Fantasía">
+                <h3>Figura Roronoa Zoro One Piece</h3>
+                <p>Espadachin.</p>
+                <span>$80.000</span>
+                <button class="buy-button">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="testimonials">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonial-card">
+            <p>"La mejor tienda de figuras, los detalles son increíbles y el envío rápido."</p>
+            <span>- Juan Pérez</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"Estoy impresionado con la calidad de las figuras, definitivamente volveré a comprar."</p>
+            <span>- Ana Gómez</span>
+        </div>
+    </section>
+
+    
+    <section class="contact">
+        <h2>Contáctanos 3007825807</h2>
+        <p>¿Tienes dudas o quieres hacer un pedido especial? ¡Escríbenos!</p>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Tu nombre" required>
+            <input type="email" name="email" placeholder="Tu correo" required>
+            <textarea name="message" placeholder="Tu mensaje" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    
+    <footer class="footer">
+        <p>&copy; 2025 Figuras 3D | Todos los derechos reservados.</p>
+    </footer>
+
+</body>
 </html>
