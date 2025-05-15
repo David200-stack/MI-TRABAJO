@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tienda de Figuras 3D | Coleccionables Únicos</title>
-    <link rel="icon" href="favicon.ico">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <meta name="description" content="Descubre la mejor tienda de figuras en 3D. Coleccionables de acción, fantasía y clásicos con acabados de alta calidad.">
-    
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- Bootstrap Icons para carrito -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+    <!-- Descripción para SEO -->
+    <meta name="description" content="Descubre la mejor tienda de figuras en 3D. Coleccionables de acción, fantasía y clásicos con acabados de alta calidad." />
+
     <style>
-        
+        /* === Animaciones === */
         @keyframes moveUpDown {
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -22,7 +27,7 @@
             100% { opacity: 0; }
         }
 
-        
+        /* === Estilos generales === */
         body {
             font-family: 'Kalam', cursive;
             background-color: #1a1a2e;
@@ -32,7 +37,39 @@
             text-align: center;
         }
 
-        
+        /* === Carrito fijo === */
+        #carrito-icono {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #87ceeb;
+            color: #1a1a2e;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 0 10px #87ceebaa;
+            text-decoration: none;
+        }
+
+        #carrito-icono i {
+            font-size: 1.2rem;
+        }
+
+        #numerito {
+            background-color: #1a1a2e;
+            color: #87ceeb;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* === Hero Section === */
         .hero-section {
             background: linear-gradient(135deg, #4c00ff, #1a1a2e);
             padding: 100px 20px;
@@ -41,25 +78,41 @@
         .hero-content h1 {
             font-size: 3rem;
             font-weight: bold;
-            color: #87CEEB; 
-            animation: moveUpDown 3s infinite; 
+            color: #87ceeb;
+            animation: moveUpDown 3s infinite;
+            margin: 0 0 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin: 0 0 20px;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #87CEEB; 
+            background-color: #87ceeb;
             color: #1a1a2e;
             padding: 15px 30px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 8px;
-            animation: blink 2s infinite; 
+            animation: blink 2s infinite;
+            transition: background-color 0.3s ease;
         }
 
-        
+        .cta-button:hover {
+            background-color: #4c00ff;
+            color: white;
+        }
+
+        /* === Categorías === */
         .categories {
             padding: 60px 20px;
             background-color: #18182b;
+        }
+
+        .categories h2 {
+            margin-bottom: 40px;
         }
 
         .category-grid {
@@ -75,17 +128,35 @@
             background-color: #4c00ff;
             border-radius: 10px;
             animation: moveUpDown 4s infinite;
+            color: #fff;
+            box-shadow: 0 0 10px #4c00ff88;
+            cursor: default;
         }
 
+        /* Reducido tamaño imágenes categorías */
         .category-card img {
-            max-width: 100%;
+            max-width: 200px;
+            max-height: 140px;
             border-radius: 10px;
+            margin-bottom: 10px;
+            display: block;
+            object-fit: cover;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        
+        .category-card h3 {
+            margin: 0;
+        }
+
+        /* === Catálogo de productos === */
         .catalog {
             padding: 60px 20px;
             background-color: #1a1a2e;
+        }
+
+        .catalog h2 {
+            margin-bottom: 40px;
         }
 
         .catalog-grid {
@@ -99,20 +170,69 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 0 10px #4c00ff55;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Reducido tamaño imágenes productos */
+        .product-card img {
+            border-radius: 10px;
+            max-width: 220px;
+            max-height: 180px;
+            height: auto;
+            margin-bottom: 15px;
+            user-select: none;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .product-card p {
+            margin: 0 0 10px;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .product-card span {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #87ceeb;
         }
 
         .buy-button {
-            background-color: #87CEEB; 
+            background-color: #87ceeb;
             padding: 10px;
             font-weight: bold;
             border-radius: 5px;
             animation: blink 1.5s infinite;
+            border: none;
+            cursor: pointer;
+            margin-top: auto;
+            transition: background-color 0.3s ease;
+            user-select: none;
         }
 
-        
+        .buy-button:hover {
+            background-color: #4c00ff;
+            color: white;
+        }
+
+        /* === Testimonios === */
         .testimonials {
             padding: 60px 20px;
             background-color: #4c00ff;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 40px;
         }
 
         .testimonial-card {
@@ -120,114 +240,485 @@
             padding: 20px;
             border-radius: 10px;
             font-style: italic;
+            margin-bottom: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ddd;
+            box-shadow: 0 0 10px #00000099;
         }
 
-        
+        .testimonial-card span {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        /* === Contacto === */
+        .contact {
+            padding: 60px 20px;
+            background-color: #18182b;
+        }
+
+        .contact h2 {
+            margin-bottom: 10px;
+        }
+
+        .contact p {
+            margin-bottom: 30px;
+        }
+
         .contact form {
             max-width: 400px;
             margin: auto;
+            text-align: left;
         }
 
-        .contact input, .contact textarea {
+        .contact input,
+        .contact textarea {
             padding: 10px;
             border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+            width: 100%;
+            font-family: 'Kalam', cursive;
+            font-size: 1rem;
+            resize: vertical;
         }
 
         .contact button {
-            background-color: #87CEEB; 
+            background-color: #87ceeb;
             padding: 10px 20px;
             font-weight: bold;
             border-radius: 5px;
             animation: moveUpDown 3s infinite;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            user-select: none;
         }
 
-        
+        .contact button:hover {
+            background-color: #4c00ff;
+            color: white;
+        }
+
+        /* === Footer === */
         .footer {
             background-color: #18182b;
             padding: 20px;
+            margin-top: 50px;
+            color: #87ceeb;
         }
     </style>
 </head>
 <body>
+    <!-- Ícono del carrito fijo en la esquina -->
+    <a href="carrito.html" id="carrito-icono" title="Ver carrito">
+        <i class="bi bi-cart-fill"></i>
+        <span id="numerito">0</span>
+    </a>
 
-    
     <header class="hero-section">
         <div class="hero-content">
             <h1>Bienvenido a la mejor tienda de figuras 3D</h1>
             <p>Explora nuestra exclusiva colección de figuras de acción, fantasía y más.</p>
             <a href="#catalogo" class="cta-button">Ver Catálogo</a>
+<footer class="footer">
+  <a
+    class="whatsapp-button"
+    href="https://wa.me/+573007825807"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    <span>WhatsApp</span>
+  </a>
+
+  <div class="footer-text">Página Global 3D 2025</div>
+</footer>
+
+<style>
+  .footer {
+    background: linear-gradient(90deg, #3a1cbd, #130f40);
+    color: #a3cdfd;
+    padding: 12px 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .footer-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .whatsapp-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: #25D366; /* verde WhatsApp */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #25D366;
+    transition: transform 0.3s ease;
+  }
+
+  .whatsapp-button img {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 4px;
+  }
+
+  .whatsapp-button span {
+    font-size: 10px;
+    font-style: normal;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    background-color: #1ebc57;
+  }
+</style>
+
+
+
         </div>
     </header>
 
-    
     <section class="categories">
         <h2>Categorías populares</h2>
         <div class="category-grid">
             <div class="category-card">
-                <img src="images/action.jpg" alt="Figuras de Acción">
+                <img src="images/action.jpg" alt="Figuras de Acción" />
                 <h3>Don flamingo</h3>
             </div>
             <div class="category-card">
-                <img src="images/fantasy.jpg" alt="Figuras de Fantasía">
+                <img src="images/fantasy.jpg" alt="Figuras de Fantasía" />
                 <h3>Kaido</h3>
             </div>
             <div class="category-card">
-                <img src="images/classic.jpg" alt="Figuras Clásicas">
+                <img src="images/classic.jpg" alt="Figuras Clásicas" />
                 <h3>Luffy</h3>
             </div>
         </div>
     </section>
 
-    
     <section id="catalogo" class="catalog">
         <h2>Nuestro catálogo</h2>
         <div class="catalog-grid">
-            <div class="product-card">
-                <img src="images/figura1.jpg" alt="Figura de Superhéroe">
+            <div class="product-card" data-nombre="Figura Luffy & Ace One Piece" data-precio="120000" data-id="1">
+                <img src="images/figura1.jpg" alt="Figura de Superhéroe" />
                 <h3>Figura Luffy & Ace One Piece</h3>
                 <p>Alta calidad y detalles impresionantes.</p>
                 <span>$120.000</span>
                 <button class="buy-button">Comprar</button>
             </div>
-            <div class="product-card">
-                <img src="images/figura2.jpg" alt="Figura de Fantasía">
+            <div class="product-card" data-nombre="Figura Roronoa Zoro One Piece" data-precio="80000" data-id="2">
+                <img src="images/figura2.jpg" alt="Figura de Fantasía" />
                 <h3>Figura Roronoa Zoro One Piece</h3>
                 <p>Espadachin.</p>
                 <span>$80.000</span>
                 <button class="buy-button">Comprar</button>
             </div>
         </div>
-    </section>
+  <section class="testimonials">
+  <h2>Lo que dicen nuestros clientes</h2>
 
-    
-    <section class="testimonials">
-        <h2>Lo que dicen nuestros clientes</h2>
-        <div class="testimonial-card">
-            <p>"La mejor tienda de figuras, los detalles son increíbles y el envío rápido."</p>
-            <span>- Juan Pérez</span>
-        </div>
-        <div class="testimonial-card">
-            <p>"Estoy impresionado con la calidad de las figuras, definitivamente volveré a comprar."</p>
-            <span>- Ana Gómez</span>
-        </div>
-    </section>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <p>
+        <q>La mejor tienda de figuras, los detalles son increíbles y el envío rápido.</q>
+      </p>
+      <span>👤 Juan Pérez</span>
+    </div>
 
-    
-    <section class="contact">
-        <h2>Contáctanos 3007825807</h2>
-        <p>¿Tienes dudas o quieres hacer un pedido especial? ¡Escríbenos!</p>
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Tu nombre" required>
-            <input type="email" name="email" placeholder="Tu correo" required>
-            <textarea name="message" placeholder="Tu mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
+    <div class="testimonial-card">
+      <p>
+        <q>Estoy impresionado con la calidad de las figuras, definitivamente volveré a comprar.</q>
+      </p>
+      <span>👤 Ana Gómez</span>
+    </div>
 
-    
+    <div class="testimonial-card">
+      <p>
+        <q>Las figuras son aún mejores en persona. ¡Gran atención al cliente también!</q>
+      </p>
+      <span>👤 Marcos Rivas</span>
+    </div>
+
+    <div class="testimonial-card">
+      <p>
+        <q>Me encantó el empaque, llegó todo en perfecto estado. Muy recomendable.</q>
+      </p>
+      <span>👤 Lucía Fernández</span>
+    </div>
+
+    <div class="testimonial-card">
+      <p>
+        <q>Excelente calidad y entrega rápida. ¡Ya estoy esperando mi próxima compra!</q>
+      </p>
+      <span>👤 Diego Torres</span>
+    </div>
+
+    <div class="testimonial-card">
+      <p>
+        <q>Gran variedad y muy buenos precios. Volveré seguro.</q>
+      </p>
+      <span>👤 Camila Herrera</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: linear-gradient(to bottom right, #4a00e0, #1f1c2c);
+    padding: 50px 20px;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #ffffff;
+  }
+
+  .testimonials h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-style: italic;
+    text-shadow: 1px 1px 4px #00000088;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    background-color: #11121a;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    padding: 30px 25px;
+    color: #a3cdfd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .testimonial-card p {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .testimonial-card span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #72aaff;
+    font-size: 16px;
+    gap: 6px;
+  }
+
+  q {
+    quotes: "“" "”";
+  }
+</style>
+
+
+    <!-- Asegúrate de tener Font Awesome en tu HTML -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<section class="contact">
+  <h2>Contáctanos <span class="highlight">3007825807</span></h2>
+  <p>¿Tienes dudas o quieres hacer un pedido especial? ¡Escríbenos!</p>
+  <form action="#" method="POST">
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" name="name" placeholder="Tu nombre" required />
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope"></i>
+      <input type="email" name="email" placeholder="Tu correo" required />
+    </div>
+    <div class="input-group">
+      <i class="fas fa-comment-dots"></i>
+      <textarea name="message" placeholder="Tu mensaje" required></textarea>
+    </div>
+    <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+  </form>
+</section>
+
+<style>
+  .contact {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #0f0f23;
+    color: #fff;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  .contact h2 {
+    font-size: 2em;
+    color: #ffffff;
+  }
+
+  .contact .highlight {
+    color: #7de1ff;
+  }
+
+  .contact p {
+    font-style: italic;
+    margin-bottom: 30px;
+    color: #ccc;
+  }
+
+  .contact form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+  }
+
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 1em;
+    outline: none;
+  }
+
+  .input-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .contact button {
+    background-color: #7de1ff;
+    border: none;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+
+  .contact button i {
+    margin-right: 8px;
+  }
+
+  .contact button:hover {
+    background-color: #5cc4dd;
+  }
+</style>
+
+
     <footer class="footer">
         <p>&copy; 2025 Figuras 3D | Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Toastify JS para notificaciones -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Script carrito -->
+    <script>
+        // Obtener referencia a elementos
+        const carritoIcono = document.getElementById('carrito-icono');
+        const numerito = document.getElementById('numerito');
+        const botonesComprar = document.querySelectorAll('.buy-button');
+
+        // Función para actualizar el contador en el ícono del carrito
+        function actualizarNumerito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let totalCantidad = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+            numerito.textContent = totalCantidad;
+        }
+
+        // Función para agregar producto al carrito en localStorage
+        function agregarAlCarrito(producto) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            const index = carrito.findIndex(item => item.id === producto.id);
+            if (index !== -1) {
+                // Ya existe, aumentamos cantidad
+                carrito[index].cantidad += 1;
+            } else {
+                // Nuevo producto
+                carrito.push({...producto, cantidad: 1});
+            }
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarNumerito();
+
+            // Mostrar notificación con Toastify
+            Toastify({
+                text: `Agregado al carrito: ${producto.nombre}`,
+                duration: 2500,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#4c00ff",
+                stopOnFocus: true
+            }).showToast();
+        }
+
+        // Inicializar evento en botones comprar
+        botonesComprar.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.product-card');
+                const producto = {
+                    id: card.dataset.id,
+                    nombre: card.dataset.nombre,
+                    precio: parseInt(card.dataset.precio)
+                };
+                agregarAlCarrito(producto);
+            });
+        });
+
+        // Al cargar la página, actualizar el contador del carrito
+        actualizarNumerito();
+    </script>
 </body>
 </html>

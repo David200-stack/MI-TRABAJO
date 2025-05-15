@@ -1,7 +1,7 @@
-/* Estilos generales */
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1a1a2e; /* Negro azulado */
+    background-color: #1a1a2e; 
     color: #fff;
     margin: 0;
     padding: 0;
@@ -12,9 +12,9 @@ body {
     }
 }
 
-/* Hero Section (Banner Principal) */
+
 .hero-section {
-    background: linear-gradient(135deg, #4c00ff, #1a1a2e); /* Morado degradado */
+    background: linear-gradient(135deg, #4c00ff, #1a1a2e); 
     padding: 100px 20px;
 }
 
@@ -22,7 +22,7 @@ body {
     font-size: 3rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #ffcc00; /* Dorado */
+    color: #ffcc00; 
     letter-spacing: 2px;
 }
 
@@ -50,10 +50,10 @@ body {
     color: #4c00ff;
 }
 
-/* Categorías */
+
 .categories {
     padding: 60px 20px;
-    background-color: #18182b; /* Negro más oscuro */
+    background-color: #18182b; 
 }
 
 .categories h2 {
@@ -87,7 +87,7 @@ body {
     border-radius: 10px;
 }
 
-/* Catálogo */
+
 .catalog {
     padding: 60px 20px;
     background-color: #1a1a2e;
@@ -137,7 +137,7 @@ body {
     color: #4c00ff;
 }
 
-/* Testimonios */
+
 .testimonials {
     padding: 60px 20px;
     background-color: #4c00ff;
@@ -158,7 +158,7 @@ body {
     font-style: italic;
 }
 
-/* Contacto */
+
 .contact {
     padding: 60px 20px;
     background-color: #1a1a2e;
@@ -199,7 +199,7 @@ body {
     color: #4c00ff;
 }
 
-/* Footer */
+
 .footer {
     background-color: #18182b;
     padding: 20px;

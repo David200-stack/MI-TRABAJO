@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FIGURAS 3D - Carrito</title>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+<!-- Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=COP&locale=es_CO&buyer-country=CO" data-sdk-integration-source="button-factory" defer></script>
+
+<style>
+    /* Reset básico */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Kalam', cursive, Arial, sans-serif;
+        background-color: #1a1a2e;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wrapper {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+    }
+
+    /* Aside (sidebar) */
+    aside {
+        background-color: #18182b;
+        color: #87ceeb;
+        width: 220px;
+        border-radius: 10px;
+        padding: 20px;
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+    }
+
+    aside header .logo {
+        font-weight: 700;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+        color: #87ceeb;
+    }
+
+    nav ul {
+        list-style: none;
+    }
+
+    nav ul li {
+        margin-bottom: 18px;
+    }
+
+    nav ul li a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #87ceeb;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+        background-color: #4c00ff;
+        color: white;
+    }
+
+    aside footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        color: #555;
+        text-align: center;
+    }
+
+    /* Main */
+    main {
+        flex: 1;
+        background-color: #18182b;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px #4c00ff66;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .titulo-principal {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #87ceeb;
+        text-align: center;
+        text-shadow: 0 0 10px #4c00ff;
+    }
+
+    .contenedor-carrito {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carrito-vacio {
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-align: center;
+        color: #aaa;
+    }
+
+    .carrito-productos {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-height: 450px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .producto-carrito {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4c00ff;
+        padding: 12px 20px;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0 0 8px #785ce9;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .producto-carrito .info {
+        flex: 1;
+    }
+
+    .producto-carrito .info p {
+        margin-bottom: 6px;
+    }
+
+    .producto-carrito .acciones {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .producto-carrito button {
+        background-color: #18182b;
+        border: none;
+        color: #87ceeb;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border-radius: 6px;
+        padding: 5px 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .producto-carrito button:hover {
+        background-color: #785ce9;
+        color: white;
+    }
+
+    .carrito-acciones {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4c00ff;
+        padding: 15px 25px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 0 10px #785ce9;
+    }
+
+    .carrito-acciones-izquierda button,
+    .carrito-acciones-derecha button {
+        background-color: #18182b;
+        border: none;
+        color: #87ceeb;
+        font-weight: 700;
+        padding: 10px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .carrito-acciones-izquierda button:hover,
+    .carrito-acciones-derecha button:hover {
+        background-color: #785ce9;
+        color: white;
+    }
+
+    .carrito-acciones-total {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .carrito-comprado {
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+        color: #87ceeb;
+        text-shadow: 0 0 8px #4c00ff;
+    }
+
+    .disabled {
+        display: none !important;
+    }
+
+    .carrito-productos::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .carrito-productos::-webkit-scrollbar-track {
+        background: #18182b;
+        border-radius: 10px;
+    }
+
+    .carrito-productos::-webkit-scrollbar-thumb {
+        background: #785ce9;
+        border-radius: 10px;
+    }
+
+    #product-description {
+        background-color: #22223b;
+        padding: 20px;
+        border-radius: 10px;
+        color: #87ceeb;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14pt;
+        line-height: 1.6;
+        box-shadow: 0 0 12px #4c00ff88;
+    }
+
+    #product-description ul {
+        list-style: inside disc;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    #product-description ul li {
+        margin-top: 10px;
+    }
+
+    #product-description b {
+        color: #aabbff;
+    }
+
+    #smart-button-container {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+        .wrapper {
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        aside {
+            width: 100%;
+            position: relative;
+            top: auto;
+        }
+
+        main {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <aside>
+        <header>
+            <h1 class="logo">FIGURAS 3D</h1>
+
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a class="boton-menu" href="./index.html">
+                        <i class="bi bi-arrow-left"></i> Volver al inicio
+                    </a>
+                </li>
+                <li>
+                    
+  
+    <ul>
+               
+                <li>
+                    <a class="boton-menu active" href="./carrito.html">
+                        <i class="bi bi-cart"></i> Carrito de compra
+                        
+                    </a>
+                </li>
+
+                
+            </ul>
+            
+
+</footer>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <footer>
+            GLOBAL 3D &copy; 2025 - Envío a toda Colombia
+        </footer>
+    </aside>
+
+    <main>
+        <h2 class="titulo-principal">Carrito de compras</h2>
+
+        <div class="contenedor-carrito">
+            <div id="carrito-vacio" class="carrito-vacio">
+                Tu carrito está vacío
+            </div>
+
+            <div id="carrito-productos" class="carrito-productos disabled"></div>
+
+            <div id="carrito-comprado" class="carrito-comprado disabled">
+                ¡Compra realizada con éxito!
+            </div>
+
+            <div class="carrito-acciones disabled" id="carrito-acciones">
+                <div class="carrito-acciones-izquierda">
+                    <button id="vaciar-carrito" title="Vaciar carrito">Vaciar carrito <i class="bi bi-trash"></i></button>
+                </div>
+                <div class="carrito-acciones-total">
+                    Total: <span id="total">$0</span>
+                </div>
+                <div class="carrito-acciones-derecha">
+                    <button id="finalizar-compra" title="Finalizar compra">Finalizar compra <i class="bi bi-credit-card"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="product-description">
+            <b>Figuras 3D de Anime </b>
+            <p>Descubre nuestra colección exclusiva de figuras 3D de personajes de anime favoritos. Cada figura es cuidadosamente diseñada y fabricada para ofrecerte la mejor calidad y detalles sorprendentes.</p>
+            <ul>
+                <li>Figuras hechas con materiales de alta calidad y durabilidad.</li>
+                <li>Diseños exclusivos y detallados para los fanáticos del anime.</li>
+                <li>Perfectas para decorar tu espacio o regalar a alguien especial.</li>
+                <li>Envío seguro y rápido a toda Colombia.</li>
+            </ul>
+            <p>¡Añade tus figuras favoritas al carrito y disfruta de la magia del anime en 3D!</p>
+        </div>
+
+
+        <div id="smart-button-container"></div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    
+    
+
+    
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    
+    const carritoVacio = document.getElementById("carrito-vacio");
+    const carritoProductos = document.getElementById("carrito-productos");
+    const carritoAcciones = document.getElementById("carrito-acciones");
+    const carritoComprado = document.getElementById("carrito-comprado");
+    const totalPrecio = document.getElementById("total");
+    const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
+    const finalizarCompraBtn = document.getElementById("finalizar-compra");
+    const smartButtonContainer = document.getElementById("smart-button-container");
+
+    function mostrarCarrito() {
+        if (carrito.length === 0) {
+            carritoVacio.classList.remove("disabled");
+            carritoProductos.classList.add("disabled");
+            carritoAcciones.classList.add("disabled");
+            carritoComprado.classList.add("disabled");
+            smartButtonContainer.innerHTML = "";
+        } else {
+            carritoVacio.classList.add("disabled");
+            carritoProductos.classList.remove("disabled");
+            carritoAcciones.classList.remove("disabled");
+            carritoComprado.classList.add("disabled");
+            carritoProductos.innerHTML = "";
+
+            carrito.forEach(producto => {
+                const div = document.createElement("div");
+                div.classList.add("producto-carrito");
+                div.innerHTML = `
+                    <div class="info">
+                        <p><b>${producto.nombre}</b></p>
+                        <p>Precio: $${producto.precio.toLocaleString()}</p>
+                        <p>Cantidad: ${producto.cantidad}</p>
+                    </div>
+                    <div class="acciones">
+                        <button class="btn-disminuir" data-id="${producto.id}" title="Disminuir cantidad"><i class="bi bi-dash-circle"></i></button>
+                        <button class="btn-aumentar" data-id="${producto.id}" title="Aumentar cantidad"><i class="bi bi-plus-circle"></i></button>
+                        <button class="btn-eliminar" data-id="${producto.id}" title="Eliminar producto"><i class="bi bi-trash"></i></button>
+                    </div>
+                `;
+                carritoProductos.appendChild(div);
+            });
+
+            actualizarTotal();
+            generarBotonPayPal();
+            agregarEventosBotones();
+        }
+    }
+
+    function agregarEventosBotones() {
+        document.querySelectorAll(".btn-disminuir").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.getAttribute("data-id"));
+                disminuirCantidad(id);
+            });
+        });
+
+        document.querySelectorAll(".btn-aumentar").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.getAttribute("data-id"));
+                aumentarCantidad(id);
+            });
+        });
+
+        document.querySelectorAll(".btn-eliminar").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.getAttribute("data-id"));
+                eliminarProducto(id);
+            });
+        });
+    }
+
+    function disminuirCantidad(id) {
+        const producto = carrito.find(p => p.id === id);
+        if (producto.cantidad > 1) {
+            producto.cantidad--;
+        } else {
+            carrito = carrito.filter(p => p.id !== id);
+        }
+        guardarYCargar();
+    }
+
+    function aumentarCantidad(id) {
+        const producto = carrito.find(p => p.id === id);
+        producto.cantidad++;
+        guardarYCargar();
+    }
+
+    function eliminarProducto(id) {
+        carrito = carrito.filter(p => p.id !== id);
+        guardarYCargar();
+    }
+
+    function vaciarCarrito() {
+        carrito = [];
+        guardarYCargar();
+    }
+
+    function actualizarTotal() {
+        const total = carrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0);
+        totalPrecio.textContent = `$${total.toLocaleString()}`;
+    }
+
+    function guardarYCargar() {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        mostrarCarrito();
+    }
+
+    // Simulación compra exitosa
+    function finalizarCompra() {
+        if (carrito.length === 0) {
+            Toastify({
+                text: "Tu carrito está vacío",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#ff0000"
+            }).showToast();
+            return;
+        }
+        carrito = [];
+        guardarYCargar();
+        carritoComprado.classList.remove("disabled");
+        smartButtonContainer.innerHTML = "";
+    }
+
+    vaciarCarritoBtn.addEventListener("click", () => {
+        if (confirm("¿Quieres vaciar el carrito?")) {
+            vaciarCarrito();
+        }
+    });
+
+    finalizarCompraBtn.addEventListener("click", finalizarCompra);
+
+    // Agrega producto al carrito (demo: agrego el primero para que no esté vacío)
+    if(carrito.length === 0) {
+        carrito.push({...productos[0]});
+        guardarYCargar();
+    }
+
+    // PayPal button (simulación)
+
+   function generarBotonPayPal() {
+        smartButtonContainer.innerHTML = "";
+        if (carrito.length === 0) return;
+
+
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'purple',
+                layout: 'vertical',
+                label: 'paypal',
+            },
+            createOrder: function(data, actions) {
+                const total = carrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0);
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: total.toFixed(2),
+                            currency_code: 'COP'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    Toastify({
+                        text: "Pago realizado con éxito. ¡Gracias por tu compra!",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#4caf50"
+                    }).showToast();
+                    finalizarCompra();
+                });
+            },
+            onError: function(err) {
+                Toastify({
+                    text: "Error en el pago: " + err,
+                    duration: 4000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#ff0000"
+                }).showToast();
+            }
+        }).render('#smart-button-container');
+    }
+
+    mostrarCarrito();
+</script>
+</body>
+</html>
+<footer style="background-color: #00d9ffc5; padding: 1rex; text-align: center; margin-top: 3rem;">
+  <p style="margin-bottom: 1rem; font-size: 1.1rem;">Apoya nuestro sitio con PayPal</p>
+  <a href="/registro.html" style="
+    background-color: #004bec;
+    color: #111;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+  ">
+    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+    Donar con PayPal
+  </a>
+</footer>
+
+<footer>
+  <a href="registro.html" class="paypal-button">Registrarse con PayPal</a>
+</footer>
+
+<style>
+footer {
+  background-color: #003087; /* Color azul PayPal */
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 -4px 8px rgba(0, 48, 135, 0.6);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+footer .paypal-button {
+  display: inline-block;
+  background-color: #009cde; /* Azul más claro PayPal */
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 156, 222, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer .paypal-button:hover,
+footer .paypal-button:focus {
+  background-color: #0070ba; /* Azul oscuro al hover */
+  box-shadow: 0 6px 16px rgba(0, 112, 186, 0.8);
+  outline: none;
+  cursor: pointer;
+}
+</style>
+
